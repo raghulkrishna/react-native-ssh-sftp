@@ -84,6 +84,46 @@ export type PasswordOrKey = string | KeyPair;
  */
 export default class SSHClient {
   /**
+     * Retrieves the details of an SSH key.
+     * @param key - The SSH private key as a string.
+     * @returns A Promise that resolves to the details of the key, including its type and size.
+     */
+  static getKeyDetails(key: string): Promise<{ type: string, size: number }> {
+    return new Promise((resolve, reject) => {
+        RNSSHClient.getKeyDetails(key)
+            .then((result: any) => {
+                resolve(result);
+            })
+            .catch((error: any) => {
+                reject(error);
+            });
+    });
+}
+ /**
+ * Generates an SSH key pair using the specified type, passphrase, key size, and comment.
+ * 
+ * @param type - The type of the key (e.g., 'rsa', 'dsa').
+ * @param passphrase - A passphrase for the key pair (optional).
+ * @param keySize - The size of the key in bits.
+ * @param comment - A comment to include with the key pair (optional).
+ * @returns A Promise resolving to an object containing the privateKey, publicKey, and fingerprint.
+ */
+ static generateKeyPair(type: string, passphrase: string, keySize: number, comment: string): Promise<{ privateKey: string, publicKey: string, fingerprint: string }> {
+    return new Promise((resolve, reject) => {
+        RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: any) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve({
+                    privateKey: keys.privateKey,
+                    publicKey: keys.publicKey,
+                    fingerprint: keys.fingerprint
+                });
+            }
+        });
+    });
+}
+  /**
    * Connects to an SSH server using a private key for authentication.
    *
    * @param host - The hostname or IP address of the SSH server.
