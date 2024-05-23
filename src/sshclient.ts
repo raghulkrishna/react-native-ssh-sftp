@@ -108,9 +108,6 @@ export default class SSHClient {
             size: result.size || 0
           });
         })
-        .catch((error: any) => {
-          reject(error);
-        });
     });
   }
   /**
@@ -125,14 +122,12 @@ export default class SSHClient {
   static generateKeyPair(type: string, passphrase?: string, keySize?: number, comment?: string): Promise<genKeyPair> {
     return new Promise((resolve, reject) => {
       RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: KeyPair) => {
-        if (error) {
-          reject(error);
-        } else {
+        
           resolve({
             privateKey: keys.privateKey,
             publicKey: keys.publicKey,
           });
-        }
+        
       });
     });
   }
