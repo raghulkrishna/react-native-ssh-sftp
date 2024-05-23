@@ -103,8 +103,9 @@ export default class SSHClient {
     return new Promise((resolve, reject) => {
       RNSSHClient.getKeyDetails(key)
         .then((result: keyDetail) => {
+          /* eslint-disable no-console */
           console.log(result);
-          
+          /* eslint-enable no-console */
           resolve({
             type: result.type,
             size: result.size || 0
