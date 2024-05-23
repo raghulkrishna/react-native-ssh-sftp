@@ -2,12 +2,12 @@
 
 SSH and SFTP client library for React Native on iOS and Android.
 
-[![Compile package](https://github.com/raghulkrishna/react-native-ssh-sftp/actions/workflows/compile.yml/badge.svg)](https://github.com/raghulkrishna/react-native-ssh-sftp/actions/workflows/compile.yml) [![Publish package to npmjs.com](https://github.com/raghulkrishna/react-native-ssh-sftp/actions/workflows/publish.yml/badge.svg)](https://github.com/raghulkrishna/react-native-ssh-sftp/actions/workflows/publish.yml)
+[![Compile package](https://github.com/wss1/react-native-ssh-sftp/actions/workflows/compile.yml/badge.svg)](https://github.com/wss1/react-native-ssh-sftp/actions/workflows/compile.yml) [![Publish package to npmjs.com](https://github.com/wss1/react-native-ssh-sftp/actions/workflows/publish.yml/badge.svg)](https://github.com/wss1/react-native-ssh-sftp/actions/workflows/publish.yml)
 
 ## Installation
 
 ```bash
-npm install @raghulkrishna/react-native-ssh-sftp
+npm install @wss1/react-native-ssh-sftp
 ```
 
 ### iOS
@@ -57,12 +57,12 @@ This project has been updated to use React Native v73 (the latest at the time of
 All functions that run asynchronously where we have to wait for a result returns Promises that can reject if an error occurred.
 
 > [!NOTE]
-> On iOS, this package currently doesn't support the simulator, you will need to have your app running on a physical device. If you  would like to know more about this, see [this issue](https://github.com/raghulkrishna/react-native-ssh-sftp/issues/20). I'd welcome a PR to resolve this.
+> On iOS, this package currently doesn't support the simulator, you will need to have your app running on a physical device. If you  would like to know more about this, see [this issue](https://github.com/wss1/react-native-ssh-sftp/issues/20). I'd welcome a PR to resolve this.
 >
 ### Create a client using password authentication
 
 ```javascript
-import SSHClient from '@raghulkrishna/react-native-ssh-sftp';
+import SSHClient from '@wss1/react-native-ssh-sftp';
 
 SSHClient.connectWithPassword(
   "10.0.0.10",
@@ -228,7 +228,7 @@ client.disconnectSFTP();
 
 ## Example app
 
-You can find a very simple example app for the usage of this library [here](https://github.com/raghulkrishna/react-native-ssh-sftp-example).
+You can find a very simple example app for the usage of this library [here](https://github.com/wss1/react-native-ssh-sftp-example).
 
 ## Credits
 

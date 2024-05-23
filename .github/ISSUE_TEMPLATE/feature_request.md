@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: "[Enhancement request]"
 labels: enhancement, triage
-assignees: raghulkrishna
+assignees: wss1
 
 ---
 

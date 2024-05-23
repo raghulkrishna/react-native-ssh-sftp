@@ -1,4 +1,4 @@
-package me.raghulkrishna.rnssh;
+package me.wss1.rnssh;
 
 import java.util.Arrays;
 import java.util.Collections;

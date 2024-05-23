@@ -1,4 +1,4 @@
-package me.raghulkrishna.rnssh;
+package me.wss1.rnssh;
 
 import android.os.Environment;
 import android.util.Log;
