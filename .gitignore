@@ -5,7 +5,7 @@
 /node_modules
 /lib
 /react-native-ssh-sftp*.tgz
-/dylankenneally-react-native-ssh-sftp*.tgz
+/raghulkrishna-react-native-ssh-sftp*.tgz
 
 # Xcode
 build/
