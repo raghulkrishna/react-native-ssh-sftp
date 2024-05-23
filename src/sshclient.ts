@@ -106,24 +106,13 @@ export default class SSHClient {
           resolve({
             type: result.type,
             size: result.size || 0
-          })
-
+          });
         })
         .catch((error: CBError) => {
           reject(error);
         });
     });
   }
-
-  /**
-  * Generates an SSH key pair using the specified type, passphrase, key size, and comment.
-  * 
-  * @param type - The type of the key (e.g., 'rsa', 'dsa').
-  * @param passphrase - A passphrase for the key pair (optional).
-  * @param keySize - The size of the key in bits.
-  * @param comment - A comment to include with the key pair (optional).
-  * @returns A Promise resolving to an object containing the privateKey, publicKey, and fingerprint.
-  */
   static generateKeyPair(type: string, passphrase?: string, keySize?: number, comment?: string): Promise<genKeyPair> {
     return new Promise((resolve, reject) => {
       RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: CBError, keys: KeyPair) => {
