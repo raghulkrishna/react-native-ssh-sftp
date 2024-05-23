@@ -103,6 +103,8 @@ export default class SSHClient {
     return new Promise((resolve, reject) => {
       RNSSHClient.getKeyDetails(key)
         .then((result: keyDetail) => {
+          console.log(result);
+          
           resolve({
             type: result.type,
             size: result.size || 0
