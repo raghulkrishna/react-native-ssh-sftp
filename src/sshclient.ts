@@ -71,6 +71,17 @@ export interface KeyPair {
   passphrase?: string;
 }
 
+export interface genKeyPair {
+  privateKey: string;
+  publicKey?: string;
+}
+
+export interface keyDetail {
+  type: string;
+  size?: number;
+}
+
+
 /**
  * Represents a password or key for authentication.
  */
@@ -91,8 +102,11 @@ export default class SSHClient {
   static getKeyDetails(key: string): Promise<{ type: string, size: number }> {
     return new Promise((resolve, reject) => {
       RNSSHClient.getKeyDetails(key)
-        .then((result: any) => {
-          resolve(result);
+        .then((result: keyDetail) => {
+          resolve({
+            type: result.type,
+            size: result.size || 0
+          });
         })
         .catch((error: any) => {
           reject(error);
@@ -108,16 +122,15 @@ export default class SSHClient {
   * @param comment - A comment to include with the key pair (optional).
   * @returns A Promise resolving to an object containing the privateKey, publicKey, and fingerprint.
   */
-  static generateKeyPair(type: string, passphrase: string, keySize: number, comment: string): Promise<{ privateKey: string, publicKey: string, fingerprint: string }> {
+  static generateKeyPair(type: string, passphrase?: string, keySize?: number, comment?: string): Promise<genKeyPair> {
     return new Promise((resolve, reject) => {
-      RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: any) => {
+      RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: KeyPair) => {
         if (error) {
           reject(error);
         } else {
           resolve({
             privateKey: keys.privateKey,
             publicKey: keys.publicKey,
-            fingerprint: keys.fingerprint
           });
         }
       });
