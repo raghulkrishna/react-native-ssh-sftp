@@ -95,10 +95,10 @@ export type PasswordOrKey = string | KeyPair;
  */
 export default class SSHClient {
   /**
-     * Retrieves the details of an SSH key.
-     * @param key - The SSH private key as a string.
-     * @returns A Promise that resolves to the details of the key, including its type and size.
-     */
+  * Retrieves the details of an SSH key.
+  * @param key - The SSH private key as a string.
+  * @returns A Promise that resolves to the details of the key, including its type and size.
+  */
   static getKeyDetails(key: string): Promise<{ type: string, size: number }> {
     return new Promise((resolve, reject) => {
       RNSSHClient.getKeyDetails(key)
@@ -110,6 +110,7 @@ export default class SSHClient {
         })
     });
   }
+
   /**
   * Generates an SSH key pair using the specified type, passphrase, key size, and comment.
   * 
@@ -122,12 +123,12 @@ export default class SSHClient {
   static generateKeyPair(type: string, passphrase?: string, keySize?: number, comment?: string): Promise<genKeyPair> {
     return new Promise((resolve, reject) => {
       RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: KeyPair) => {
-        
-          resolve({
-            privateKey: keys.privateKey,
-            publicKey: keys.publicKey,
-          });
-        
+
+        resolve({
+          privateKey: keys.privateKey,
+          publicKey: keys.publicKey,
+        });
+
       });
     });
   }
