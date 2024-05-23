@@ -78,7 +78,7 @@ export interface genKeyPair {
 
 export interface keyDetail {
   keyType: string;
-  size?: number;
+  keySize?: number;
 }
 
 
@@ -99,7 +99,7 @@ export default class SSHClient {
   * @param key - The SSH private key as a string.
   * @returns A Promise that resolves to the details of the key, including its type and size.
   */
-  static getKeyDetails(key: string): Promise<{ keyType: string, size: number }> {
+  static getKeyDetails(key: string): Promise<{ keyType: string, keySize: number }> {
     return new Promise((resolve, reject) => {
       RNSSHClient.getKeyDetails(key)
         .then((result: keyDetail) => {
@@ -108,7 +108,7 @@ export default class SSHClient {
           /* eslint-enable no-console */
           resolve({
             keyType: result.keyType,
-            size: result.size || 0
+            keySize: result.keySize || 0
           });
         })
         .catch((error: CBError) => {
