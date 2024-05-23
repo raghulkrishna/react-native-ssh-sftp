@@ -90,39 +90,39 @@ export default class SSHClient {
      */
   static getKeyDetails(key: string): Promise<{ type: string, size: number }> {
     return new Promise((resolve, reject) => {
-        RNSSHClient.getKeyDetails(key)
-            .then((result: any) => {
-                resolve(result);
-            })
-            .catch((error: any) => {
-                reject(error);
-            });
-    });
-}
- /**
- * Generates an SSH key pair using the specified type, passphrase, key size, and comment.
- * 
- * @param type - The type of the key (e.g., 'rsa', 'dsa').
- * @param passphrase - A passphrase for the key pair (optional).
- * @param keySize - The size of the key in bits.
- * @param comment - A comment to include with the key pair (optional).
- * @returns A Promise resolving to an object containing the privateKey, publicKey, and fingerprint.
- */
- static generateKeyPair(type: string, passphrase: string, keySize: number, comment: string): Promise<{ privateKey: string, publicKey: string, fingerprint: string }> {
-    return new Promise((resolve, reject) => {
-        RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: any) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve({
-                    privateKey: keys.privateKey,
-                    publicKey: keys.publicKey,
-                    fingerprint: keys.fingerprint
-                });
-            }
+      RNSSHClient.getKeyDetails(key)
+        .then((result: any) => {
+          resolve(result);
+        })
+        .catch((error: any) => {
+          reject(error);
         });
     });
-}
+  }
+  /**
+  * Generates an SSH key pair using the specified type, passphrase, key size, and comment.
+  * 
+  * @param type - The type of the key (e.g., 'rsa', 'dsa').
+  * @param passphrase - A passphrase for the key pair (optional).
+  * @param keySize - The size of the key in bits.
+  * @param comment - A comment to include with the key pair (optional).
+  * @returns A Promise resolving to an object containing the privateKey, publicKey, and fingerprint.
+  */
+  static generateKeyPair(type: string, passphrase: string, keySize: number, comment: string): Promise<{ privateKey: string, publicKey: string, fingerprint: string }> {
+    return new Promise((resolve, reject) => {
+      RNSSHClient.generateKeyPair(type, passphrase, keySize, comment, (error: any, keys: any) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve({
+            privateKey: keys.privateKey,
+            publicKey: keys.publicKey,
+            fingerprint: keys.fingerprint
+          });
+        }
+      });
+    });
+  }
   /**
    * Connects to an SSH server using a private key for authentication.
    *
@@ -184,7 +184,7 @@ export default class SSHClient {
   private _key: string;
   private _listeners: Record<string, EmitterSubscription>;
   private _counters: { download: number; upload: number; };
-  private _activeStream: {  sftp: boolean; shell: boolean; };
+  private _activeStream: { sftp: boolean; shell: boolean; };
   private _handlers: Record<string, EventHandler>;
   private host: string;
   private port: number;
